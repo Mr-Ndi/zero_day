@@ -7,7 +7,7 @@ const form = document.getElementById("form")
 
 const socket = io('http://127.0.0.1:3000')
 socket.on('connect', () =>{
-    displaMessage(`connected to the server wit id ${socket.id}`)
+    displaMessage(`connected to the server with id ${socket.id}`)
 })
 
 socket.on('receive-message', message => {
@@ -19,13 +19,14 @@ form.addEventListener("submit", e=>{
     const message = messageInput.value
     const room = roomInput.value
 
-    if (message === "")
-        displaMessage(message)
-    socket.emit('send-message', message)
+    if (message === "") return
+    displaMessage(message)
+    socket.emit('send-message', message, room)
     messageInput.value = ""
 })
 joinRoomButton.addEventListener("click", () =>{
     const room = roomInput.value
+    socket.emit('join-room', room)
 })
 
 function displaMessage(message) {
