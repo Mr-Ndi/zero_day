@@ -1,8 +1,18 @@
+import { io } from "socket.io-client"
+
 const joinRoomButton = document.getElementById("room-button")
 const messageInput = document.getElementById("message-input")
 const roomInput = document.getElementById("room-input")
 const form = document.getElementById("form")
 
+const socket = io('http://127.0.0.1:3000')
+socket.on('connect', () =>{
+    displaMessage(`connected to the server wit id ${socket.id}`)
+})
+
+socket.on('receive-message', message => {
+    displaMessage(message)
+})
 
 form.addEventListener("submit", e=>{
     e.preventDefault()
@@ -11,6 +21,7 @@ form.addEventListener("submit", e=>{
 
     if (message === "")
         displaMessage(message)
+    socket.emit('send-message', message)
     messageInput.value = ""
 })
 joinRoomButton.addEventListener("click", () =>{
