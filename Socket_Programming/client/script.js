@@ -7,11 +7,11 @@ const form = document.getElementById("form")
 
 const socket = io('http://127.0.0.1:3000')
 socket.on('connect', () =>{
-    displaMessage(`connected to the server with id ${socket.id}`)
+    displayMessage(`connected to the server with id ${socket.id}`)
 })
 
 socket.on('receive-message', message => {
-    displaMessage(message)
+    displayMessage(message)
 })
 
 form.addEventListener("submit", e=>{
@@ -20,18 +20,18 @@ form.addEventListener("submit", e=>{
     const room = roomInput.value
 
     if (message === "") return
-    displaMessage(message)
+    displayMessage(message)
     socket.emit('send-message', message, room)
     messageInput.value = ""
 })
 joinRoomButton.addEventListener("click", () =>{
     const room = roomInput.value
     socket.emit('join-room', room, message => {
-        displaMessage(message)
+        displayMessage(message)
     })
 })
 
-function displaMessage(message) {
+function displayMessage(message) {
     const div = document.createElement("div")
         div.textContent = message
         document.getElementById("message-container").append(div)
