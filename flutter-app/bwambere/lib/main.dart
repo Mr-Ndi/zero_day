@@ -11,7 +11,7 @@ void main() {
           backgroundColor:Colors.deepPurple[400],
         ),
         body: Center(
-          child: const Text("Hello World, This is a body by Ndi"),
+          child: const Image(image: AssetImage('images/image.jpeg')),
         ),
         backgroundColor: Colors.deepPurple[100]
       ),
