@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+
+# Build output
+.next/
+dist/
+out/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Env and config
+.env
+.env.local
+.env.*.local
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+
+# Airtable backup or exports
+*.csv
+*.xlsx
+*.tsv
+*.bak
+
+# Local data
+data/*.json
+data/*.csv
+records.json
+*.sqlite
+
+# Others
+coverage/
+.cache/
+
