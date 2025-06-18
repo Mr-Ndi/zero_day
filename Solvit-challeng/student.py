@@ -19,6 +19,7 @@ class Student:
         for subject, score in self.__grades.items():
             print(f"  {subject}: {score}")
         print(f"Average: {self.get_average():.2f}")
+        print("----------------------------------------------------")
 
     def get_grades(self):
         return self.__grades.copy()
