@@ -1,20 +1,38 @@
 import 'package:flutter/material.dart';
-// import 'package:pixel_preview/pixel_preview.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Day 5 Demo',
       home: Scaffold(
-        appBar: AppBar(title: Text('My First App')),
-        body: Center(child: Text('Hello, Flutter!')),
+        appBar: AppBar(title: Text('Widget Practice')),
+        body: MyHomePage(),
+      ),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Hello World!'),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.star, color: Colors.amber),
+              SizedBox(width: 5),
+              Text('Stars Row'),
+            ],
+          ),
+        ],
       ),
     );
   }
