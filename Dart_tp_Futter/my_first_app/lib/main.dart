@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Day 5 Demo',
       home: Scaffold(
-        appBar: AppBar(title: Text('Widget Practice')),
+        appBar: AppBar(title: Text('Day six demo')),
         body: MyHomePage(),
       ),
     );
@@ -23,6 +23,15 @@ class MyHomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Hello World!'),
+          TextField(
+            onChanged: (text) {
+              print('Text changed: $text');
+            },
+            decoration: InputDecoration(
+              labelText: 'Enter text',
+              border: OutlineInputBorder(),
+            ),
+          ),
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
