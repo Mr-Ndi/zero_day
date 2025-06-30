@@ -4,11 +4,22 @@ This beginner R project explores a fictional dataset of student academic perform
 
 ## 🗂 Project Structure
 
-- `data/`: Contains raw CSV data file.
-- `scripts/`: R script(s) for cleaning, analysis, and visualization.
-- `outputs/`: Summary results and exported plots.
-- `README.md`: Project documentation.
+The project is organized into clearly defined folders to separate data, scripts, and results:
 
+```
+
+StudentPerformance/
+├── data/                  # Contains the raw input data file (CSV format)
+│   └── students\_performance.csv
+├── scripts/               # R scripts for data cleaning, analysis, and visualization
+│   └── analysis.R
+├── outputs/               # Generated outputs such as cleaned data and plots
+│   ├── summary.csv        # Exported summary statistics
+│   └── plots/             # Folder containing generated visualizations
+│       └── score\_distribution.png
+└── README.md              # Project overview and instructions
+
+```
 ## 🔍 Goals
 
 - Import and explore real-world structured data.
