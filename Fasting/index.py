@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path
 import uvicorn
 
 app = FastAPI()
@@ -8,8 +8,8 @@ app = FastAPI()
 def home():
     return {"message": "Welcome to the FastAPI application!"}
 
-@app.get("/hello")
-def hello(name:str, age:int):
+@app.get("/hello{name}/{age}")
+def hello(name:str=Path(...,min_length=2), age:int=Path(...,gt=20)):
     return {"message": f"Hello I'm {name}, I am {age} years old!"}
 
 if __name__ == "__main__":
