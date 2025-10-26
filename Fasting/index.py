@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Path, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 
 app = FastAPI()
