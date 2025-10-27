@@ -1,13 +1,17 @@
-from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlmodel import SQLModel, Field
+from typing import Optional
+from datetime import date
+from enum import Enum
 
-Base = declarative_base()
-session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-class Books(Base):
-    __tablename__ = 'book'
-    id = Column(Integer, primary_key=True, nullable=False)
-    title = Column(String(50), unique=True)
-    author = Column(String(50))
-    publisher = Column(String(50))
-Base.metadata.create_all(bind=engine)
+
+
+class Book(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    title: str
+    author: str
+    publisher: str
+    publication_date: date
+    pages: int
+    language: str
+    isbn: str
+    summary: str
