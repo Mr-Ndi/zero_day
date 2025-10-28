@@ -1,26 +1,37 @@
-from sqlmodel import Session, select
+from sqlmodel import SQLModel, select
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import sessionmaker
 from models.book_model import Book
 
 
+def get_session_maker(engine):
+    return sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+
+
 async def insert_book(engine, book):
-    async with Session(engine) as session:
-        session.add(book)
+    async_session_maker = get_session_maker(engine)
+    async with async_session_maker() as session:
+        db_book = Book.from_orm(book)
+        session.add(db_book)
         await session.commit()
-        await session.refresh(book)
-        return book
-    
+        await session.refresh(db_book)
+        return db_book
+
 async def get_book_by_id(engine, book_id):
-    async with Session(engine) as session:
+    async_session_maker = get_session_maker(engine)
+    async with async_session_maker() as session:
         book = await session.get(Book, book_id)
         return book
     
 async def get_all_books(engine):
-    async with Session(engine) as session:
+    async_session_maker = get_session_maker(engine)
+    async with async_session_maker() as session:
         books = await session.exec(select(Book)).all()
         return books
     
 async def delete_book(engine, book_id):
-    async with Session(engine) as session:
+    async_session_maker = get_session_maker(engine)
+    async with async_session_maker() as session:
         book = await session.get(Book, book_id)
         if book:
             await session.delete(book)
@@ -29,7 +40,8 @@ async def delete_book(engine, book_id):
         return False
 
 async def update_book(engine, old_book, updated_book):
-    async with Session(engine) as session:
+    async_session_maker = get_session_maker(engine)
+    async with async_session_maker() as session:
         old_book.title = updated_book.title
         old_book.author = updated_book.author
         old_book.description = updated_book.description

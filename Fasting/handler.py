@@ -1,10 +1,14 @@
-from sqlmodel import SQLModel, create_engine
-from sqlmodel import create_async_engine
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
+from sqlmodel import SQLModel
 
+sqlite_url = "sqlite+aiosqlite:///database.db"
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
 engine = create_async_engine(sqlite_url, echo=True)
 
-def create_db_and_tables():
-    SQLModel.metadata.create_all(engine)
+async_session_maker = sessionmaker(
+    engine, class_=AsyncSession, expire_on_commit=False
+)
+async def init_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(SQLModel.metadata.create_all)
