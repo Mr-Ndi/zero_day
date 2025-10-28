@@ -2,8 +2,13 @@ from fastapi import FastAPI, Path, Request
 from contextlib import asynccontextmanager
 import uvicorn
 from Routes import book_routes
+from handler import init_db
 
 app = FastAPI()
+
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
 
 app.include_router(book_routes.router, prefix="/api")
 
