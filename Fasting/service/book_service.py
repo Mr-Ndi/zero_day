@@ -26,7 +26,8 @@ async def get_book_by_id(engine, book_id):
 async def get_all_books(engine):
     async_session_maker = get_session_maker(engine)
     async with async_session_maker() as session:
-        books = await session.exec(select(Book)).all()
+        result = await session.execute(select(Book))
+        books = result.scalars().all()
         return books
     
 async def delete_book(engine, book_id):

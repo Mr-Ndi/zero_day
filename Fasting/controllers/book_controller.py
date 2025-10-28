@@ -11,7 +11,7 @@ async def get_book(book_id: int):
     return book
     
 async def get_books():
-    books = get_all_books()
+    books = await get_all_books(engine)
     if not books:
         raise HTTPException(status_code=404, detail="Books not found")
     return books
