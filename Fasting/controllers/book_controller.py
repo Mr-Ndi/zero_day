@@ -1,9 +1,11 @@
-from sqlmodel import Session, en
+from fastapi import HTTPException as HttpException
 from models.book_model import Book
 from service.book_service import insert_book, get_book_by_id, get_all_books, delete_book, update_book
 
 def get_book(book_id: int):
     book = get_book_by_id(book_id=book_id)
+    if not book:
+        raise HttpException(status_code=404, detail="Book not found")
     return book
     
 def get_books():

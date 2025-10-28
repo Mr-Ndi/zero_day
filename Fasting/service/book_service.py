@@ -27,15 +27,13 @@ def delete_book(engine, book_id):
             return True
         return False
 
-def update_book(engine, book_id, updated_book):
+def update_book(engine, old_book, updated_book):
     with Session(engine) as session:
-        book = session.get(Book, book_id)
-        if book:
-            book.title = updated_book.title
-            book.author = updated_book.author
-            book.description = updated_book.description
-            session.add(book)
-            session.commit()
-            session.refresh(book)
-            return book
-        return None
+        old_book.title = updated_book.title
+        old_book.author = updated_book.author
+        old_book.description = updated_book.description
+        session.add(old_book)
+        session.commit()
+        session.refresh(old_book)
+    return old_book
+    
