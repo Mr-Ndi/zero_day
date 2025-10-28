@@ -1,6 +1,7 @@
 from sqlmodel import Session, select
 from models.book_model import Book
 
+
 async def insert_book(engine, book):
     async with Session(engine) as session:
         session.add(book)

@@ -1,3 +1,4 @@
+from handler import engine
 from fastapi import HTTPException
 from models.book_model import Book
 from middleware.schemas import BookCreate, BookUpdate
@@ -16,7 +17,7 @@ async def get_books():
     return books
 
 async def create_book(book: BookCreate):
-    new_book = await insert_book(book=book)
+    new_book = await insert_book(engine, book=book)
     if not new_book:
         raise HTTPException(status_code=404, detail="Book not found")
     return new_book

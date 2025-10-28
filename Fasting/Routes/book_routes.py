@@ -13,7 +13,7 @@ async def get_book(book_id: int):
     return await get_book(book_id=book_id)
 
 @router.post("/book")
-async def create_book(book: BookCreate):
+async def insert_book(book: BookCreate):
     return await create_book(book=book)
 
 @router.put("/book/{book_id}")
