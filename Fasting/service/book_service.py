@@ -1,4 +1,5 @@
-from sqlmodel import Session
+from sqlmodel import Session, select
+from models.book_model import Book
 
 def insert_book(engine, book):
     with Session(engine) as session:
