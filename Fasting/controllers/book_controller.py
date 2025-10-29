@@ -5,7 +5,7 @@ from middleware.schemas import BookCreate, BookUpdate
 from service.book_service import insert_book, get_book_by_id, get_all_books, delete_book, update_book
 
 async def get_book(book_id: int):
-    book = await get_book_by_id(book_id=book_id)
+    book = await get_book_by_id(engine, book_id)
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
     return book

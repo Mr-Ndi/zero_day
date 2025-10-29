@@ -9,8 +9,8 @@ async def books():
     return await get_books()
 
 @router.get("/book/{book_id}")
-async def get_book(book_id: int):
-    return await get_book(book_id=book_id)
+async def single_book(book_id: int):
+    return await get_book(book_id)
 
 @router.post("/book")
 async def insert_book(book: BookCreate):
