@@ -23,8 +23,14 @@ async def create_book(book: BookCreate):
     return new_book
 
 async def remove_book(book_id: int):
-    result = delete_book(book_id=book_id)
-    return result
+    book = await get_book_by_id(engine, book_id)
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
+    result = await delete_book(engine, book_id)
+    if result:
+        return {"detail": "Book deleted successfully"}
+    else:
+        pass
 
 async def modify_book(book_id: int, updated_book: BookUpdate):
     if not book_id:
