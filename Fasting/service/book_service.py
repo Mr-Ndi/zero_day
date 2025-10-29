@@ -45,7 +45,13 @@ async def update_book(engine, old_book, updated_book):
     async with async_session_maker() as session:
         old_book.title = updated_book.title
         old_book.author = updated_book.author
-        old_book.description = updated_book.description
+       
+        old_book.publisher = updated_book.publisher
+        old_book.publication_date = updated_book.publication_date
+        old_book.pages = updated_book.pages
+        old_book.language = updated_book.language
+        old_book.isbn = updated_book.isbn
+        old_book.summary = updated_book.summary
         session.add(old_book)
         await session.commit()
         await session.refresh(old_book)

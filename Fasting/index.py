@@ -10,8 +10,6 @@ app = FastAPI()
 async def startup_event():
     await init_db()
 
-app.include_router(book_routes.router, prefix="/api")
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     yield
@@ -19,6 +17,8 @@ async def lifespan(app: FastAPI):
 @app.get("/")
 async def home():
     return {"message": "Welcome to the FastAPI application!"}
+
+app.include_router(book_routes.router, prefix="/api")
 
 if __name__ == "__main__":
     uvicorn.run("index:app", host="127.0.0.1", port=3500, reload=True)

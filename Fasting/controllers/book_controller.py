@@ -29,9 +29,9 @@ async def remove_book(book_id: int):
 async def modify_book(book_id: int, updated_book: BookUpdate):
     if not book_id:
         raise HTTPException(status_code=404, detail="Book not found")
-    book = await get_book_by_id(book_id=book_id)
+    book = await get_book_by_id(engine, book_id)
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
-    book = await update_book(old_book=book, updated_book=updated_book)
+    book = await update_book(engine, old_book=book, updated_book=updated_book)
     return book
 
