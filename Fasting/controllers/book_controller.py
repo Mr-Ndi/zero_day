@@ -1,6 +1,5 @@
 from handler import engine
 from fastapi import HTTPException
-from models.book_model import Book
 from middleware.schemas import BookCreate, BookUpdate
 from service.book_service import insert_book, get_book_by_id, get_all_books, delete_book, update_book
 

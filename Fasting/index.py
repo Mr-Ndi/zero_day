@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Path, Request
+from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
 import uvicorn
 from Routes import book_routes

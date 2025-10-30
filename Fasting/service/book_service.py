@@ -1,4 +1,4 @@
-from sqlmodel import SQLModel, select
+from sqlmodel import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
 from models.book_model import Book
